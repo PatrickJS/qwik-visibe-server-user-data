@@ -18,6 +18,13 @@ import { manifest } from "@qwik-client-manifest";
 import Root from "./root";
 
 export default function (opts: RenderToStreamOptions) {
+  // console.log("Server data", opts.serverData);
+  const serverData = opts.serverData as any;
+  serverData.qwikcity.ev.sharedMap.set("MY_data", {
+    message: "Hello from the server entry.srr.tsx",
+  });
+  console.log("serverData", serverData.qwikcity.ev.sharedMap.get("MY_data"));
+  debugger;
   return renderToStream(<Root />, {
     manifest,
     ...opts,

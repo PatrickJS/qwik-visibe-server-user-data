@@ -1,7 +1,14 @@
 import { component$, Slot } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 
-export const onGet: RequestHandler = async ({ cacheControl }) => {
+export const onRequest: RequestHandler = async ({
+  cacheControl,
+  sharedMap,
+}) => {
+  sharedMap.set("MY_data", {
+    message: "Hello from the server layout.tsx",
+  });
+  console.log("onRequest layout.tsx", sharedMap);
   // Control caching for this request for best performance and to reduce hosting costs:
   // https://qwik.dev/docs/caching/
   cacheControl({
